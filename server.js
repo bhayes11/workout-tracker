@@ -46,27 +46,16 @@ connection.on("error", (err) => {
 //     });
 // });
 
-app.post("/workouts", ({ body }, res) => {
-  db.Workout.create(body)
-    .then(({ _id }) => db.User.findOneAndUpdate({}, { $push: { workouts: _id } }, { new: true }))
-    .then(dbUser => {
-      res.json(dbUser);
-    })
-    .catch(err => {
-      res.json(err);
-    });
-});
-
-app.get("/populateduser", (req, res) => {
-  db.User.find({})
-    .populate("notes")
-    .then(dbUser => {
-      res.json(dbUser);
-    })
-    .catch(err => {
-      res.json(err);
-    });
-});
+// app.get("/populateduser", (req, res) => {
+//   db.User.find({})
+//     .populate("notes")
+//     .then(dbUser => {
+//       res.json(dbUser);
+//     })
+//     .catch(err => {
+//       res.json(err);
+//     });
+// });
 
 // view and api routes
 app.use(require("./routes/api-routes"));
