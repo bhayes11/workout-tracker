@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 
 const PORT = process.env.PORT || 3000;
 
-const db = require("./models");
+// const db = require("./models");
 const app = express();
 
 app.use(logger("dev"));
@@ -33,23 +33,8 @@ connection.on("connected", () => {
 connection.on("error", (err) => {
   console.log("Mongoose connection error: " + err);
 });
-// db.User.create({ name: "Ernest Hemingway" })
-//   .then(dbUser => {
-//     console.log(dbUser);
-//   })
-//   .catch(({ message }) => {
-//     console.log(message);
-//   });
 
-app.get("/api/workouts", (req, res) => {
-  db.Workout.find({})
-    .then(dbWorkout => {
-      res.json(dbWorkout);
-    })
-    .catch(err => {
-      res.json(err);
-    });
-});
+
 
 // app.get("/user", (req, res) => {
 //   db.User.find({})
