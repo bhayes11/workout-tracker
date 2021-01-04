@@ -5,14 +5,15 @@ const mongoose = require("mongoose");
 const PORT = process.env.PORT || 3000;
 
 const db = require("./models");
-
 const app = express();
 
 app.use(logger("dev"));
 
+//middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+//static directory
 app.use(express.static("public"));
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
@@ -41,28 +42,28 @@ connection.on("error", (err) => {
 //   });
 
 app.get("/api/workouts", (req, res) => {
-  db.Note.find({})
-    .then(dbNote => {
-      res.json(dbNote);
+  db.Workout.find({})
+    .then(dbWorkout => {
+      res.json(dbWorkout);
     })
     .catch(err => {
       res.json(err);
     });
 });
 
-app.get("/user", (req, res) => {
-  db.User.find({})
-    .then(dbUser => {
-      res.json(dbUser);
-    })
-    .catch(err => {
-      res.json(err);
-    });
-});
+// app.get("/user", (req, res) => {
+//   db.User.find({})
+//     .then(dbUser => {
+//       res.json(dbUser);
+//     })
+//     .catch(err => {
+//       res.json(err);
+//     });
+// });
 
-app.post("/submit", ({ body }, res) => {
-  db.Note.create(body)
-    .then(({ _id }) => db.User.findOneAndUpdate({}, { $push: { notes: _id } }, { new: true }))
+app.post("/workouts", ({ body }, res) => {
+  db.Workout.create(body)
+    .then(({ _id }) => db.User.findOneAndUpdate({}, { $push: { workouts: _id } }, { new: true }))
     .then(dbUser => {
       res.json(dbUser);
     })
@@ -81,6 +82,10 @@ app.get("/populateduser", (req, res) => {
       res.json(err);
     });
 });
+
+// view and api routes
+app.use(require("./routes/api-routes"));
+app.use(require("./routes/html-routes"));
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}!`);
