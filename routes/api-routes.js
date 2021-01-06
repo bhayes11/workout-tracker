@@ -54,6 +54,16 @@ router.put("/api/workouts/:id", (req, res) => {
         });
 });
 
+router.get("/api/workouts/range", (req, res) => {
+    db.Workout.find().limit(7)
+    .then((dbWorkout) => {
+        res.json(dbWorkout);
+    })
+        .catch(err => {
+            res.json(err);
+        });
+});
+
 // router.post("/api/workouts", ({ body }, res) => {
 //     db.Workout.create(body)
 //         //.then(({ _id }) => db.User.findOneAndUpdate({}, { $push: { workouts: _id } }, { new: true }))
