@@ -54,26 +54,26 @@ router.post("/api/workouts", (req, res) => {
 //         });
 // });
 
-router.put('/api/workouts/:id', ({ body, params }, res) => {
+router.put("/api/workouts/:id", ({ body, params }, res) => {
     db.Workout.findByIdAndUpdate(
-      params.id,
-      { $push: { exercises: body } },
-      // "runValidators" will ensure new exercises meet our schema requirements
-      { new: true, runValidators: true }
+        params.id,
+        { $push: { exercises: body } },
+        // "runValidators" will ensure new exercises meet our schema requirements
+        { new: true, runValidators: true }
     )
-      .then((updateWorkout) => {
-        res.json(updateWorkout);
-      })
-      .catch((err) => {
-        res.json(err);
-      });
-  });
+        .then((updateWorkout) => {
+            res.json(updateWorkout);
+        })
+        .catch((err) => {
+            res.json(err);
+        });
+});
 
 router.get("/api/workouts/range", (req, res) => {
     db.Workout.find().limit(7)
-    .then((dbWorkout) => {
-        res.json(dbWorkout);
-    })
+        .then((dbWorkout) => {
+            res.json(dbWorkout);
+        })
         .catch(err => {
             res.json(err);
         });
