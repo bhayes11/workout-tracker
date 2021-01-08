@@ -22,6 +22,8 @@ function generatePalette() {
 }
 
 function populateChart(data) {
+  
+  //Uncaught (in promise) TypeError: data.map is not a function
   let durations = data.map(({ totalDuration }) => totalDuration);
   let pounds = calculateTotalWeight(data);
   let workouts = workoutNames(data);
