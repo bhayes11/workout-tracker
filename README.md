@@ -2,7 +2,7 @@
 
 ## Description
 
-The purpose of this project was to create a burger logger with MySQL, Node, Express, Handlebars and a homemade ORM.
+With the help of the workout tracker the user is able to create exercises and track all workouts with charts and graphs. This project uses the Mongo database with Mongoose schema.
 
 ## Table of Contents
 - [Screenshot](#Screenshot)
@@ -12,14 +12,14 @@ The purpose of this project was to create a burger logger with MySQL, Node, Expr
 ## Screenshot
 
 ![screenshot](./public/assets/image1.png)
+![screenshot](./public/assets/image2.png)
+![screenshot](./public/assets/image3.png)
 
 ## Technology Concepts
 
-* MySQL
-* Node
+* MongoDB
+* Mongoose
 * Express
-* Handlebars
-
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/#) License
