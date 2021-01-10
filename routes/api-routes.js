@@ -25,16 +25,6 @@ router.get("/api/workouts", (req, res) => {
         });
 });
 
-// router.get("/api/workouts/:id", (req, res) => {
-//     db.Workout.findById(req.params.id)
-//         .then((foundWorkout) => {
-//             res.json(foundWorkout);
-//         })
-//         .catch(err => {
-//             res.json(err);
-//         });
-// });
-
 router.post("/api/workouts", (req, res) => {
     db.Workout.create(req.body).then((newWorkout) => {
         res.json(newWorkout);
